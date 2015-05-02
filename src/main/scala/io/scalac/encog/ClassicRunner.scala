@@ -13,7 +13,21 @@ import org.encog.neural.networks.training.propagation.resilient.ResilientPropaga
 import scala.collection.JavaConversions._
 
 object ClassicRunner {
-  def run(input: Array[Array[Double]], ideal: Array[Array[Double]]) = {
+  def run() = {
+    val input = Array(
+      Array( 0.0, 0.0 ),
+      Array( 1.0, 0.0 ),
+      Array( 0.0, 1.0 ),
+      Array( 1.0, 1.0 )
+    )
+
+    val ideal = Array(
+      Array(0.0),
+      Array(1.0),
+      Array(1.0),
+      Array(0.0)
+    )
+
     // create a neural network, without using a factory
     val network = new BasicNetwork();
     network.addLayer(new BasicLayer(null,true,2));

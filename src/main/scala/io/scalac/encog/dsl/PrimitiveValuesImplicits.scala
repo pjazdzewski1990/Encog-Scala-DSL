@@ -32,28 +32,29 @@ object PrimitiveValuesImplicits {
 //    override def |(v: T): EncogCompossible[T] = throw new UnsupportedOperationException("DSL (for now) handles Arrays up to 6 elements!")
 //  }
 
-//  trait EncogCompossible[T] { self =>
-//    type JA = self.type
-//    def |(v: T): EncogCompossible[T]
-//  }
   implicit class EncogArray1[T](elem1: T) {
     def |(v: T) = new EncogArray2[T](elem1, v)
-    def \\(v: EncogArray1[T]) = EncogArray2(this, v)
+    def \\(v: T) = new EncogArray2[T](elem1, v)
+    def \\\(v: T) = new EncogArray2[T](elem1, v)
   }
   case class EncogArray2[T](elem1: T, elem2: T) {
     def |(v: T) = new EncogArray3[T](elem1, elem2, v)
-    def \\(v: EncogArray2[T]) = EncogArray2(this, v)
+    def \\(v: T) = new EncogArray3[T](elem1, elem2, v)
+    def \\\(v: T) = new EncogArray3[T](elem1, elem2, v)
   }
   case class EncogArray3[T](elem1: T, elem2: T, elem3: T) {
     def |(v: T) = new EncogArray4[T](elem1, elem2, elem3, v)
-    def \\(v: EncogArray3[T]) = EncogArray2(this, v)
+    def \\(v: T) = new EncogArray4[T](elem1, elem2, elem3, v)
+    def \\\(v: T) = new EncogArray4[T](elem1, elem2, elem3, v)
   }
-  case class EncogArray4[T](elem1: T, elem2: T, elem3: T, elem4: T)  {
+  case class EncogArray4[T](elem1: T, elem2: T, elem3: T, elem4: T) {
     def |(v: T) = new EncogArray5[T](elem1, elem2, elem3, elem4, v)
-    def \\(v: EncogArray4[T]) = EncogArray2(this, v)
+    def \\(v: T) = new EncogArray5[T](elem1, elem2, elem3, elem4, v)
+    def \\\(v: T) = new EncogArray5[T](elem1, elem2, elem3, elem4, v)
   }
   case class EncogArray5[T](elem1: T, elem2: T, elem3: T, elem4: T, elem5: T) {
     def |(v: T): EncogArray5[T] = throw new UnsupportedOperationException("DSL (for now) handles Arrays up to 6 elements!")
-    def \\(v: EncogArray2[T]): EncogArray2[T] = throw new UnsupportedOperationException("DSL (for now) handles Arrays up to 6 elements!")
+    def \\(v: T): EncogArray5[T] = throw new UnsupportedOperationException("DSL (for now) handles Arrays up to 6 elements!")
+    def \\\(v: T): EncogArray5[T] = throw new UnsupportedOperationException("DSL (for now) handles Arrays up to 6 elements!")
   }
 }

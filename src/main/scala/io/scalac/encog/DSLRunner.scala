@@ -7,13 +7,27 @@ import org.encog.Encog
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation
 
 object DSLRunner {
-  def run(input: Array[Array[Double]], ideal: Array[Array[Double]]) = {
+  def run() = {
 
-//    1.0 | 1.0 | 1.0 | 0.0 \\
-//    2.0 | 1.0 | 1.0 | 1.0
-//    \\\
-//    1.0 | 1.0 | 1.0 | 0.0 \\
-//    2.0 | 1.0 | 1.0 | 1.0
+//    val input =
+//      ( 0.0 | 0.0 ) \\
+//      ( 1.0 | 0.0 ) \\
+//      ( 0.0 | 1.0 ) \\
+//      ( 1.0 | 1.0 )
+
+    val input = Array(
+      Array( 0.0, 0.0 ),
+      Array( 1.0, 0.0 ),
+      Array( 0.0, 1.0 ),
+      Array( 1.0, 1.0 )
+    )
+
+    val ideal = Array(
+      Array(0.0),
+      Array(1.0),
+      Array(1.0),
+      Array(0.0)
+    )
 
     val network =
       (InputLayer having bias having 2.layers) +
