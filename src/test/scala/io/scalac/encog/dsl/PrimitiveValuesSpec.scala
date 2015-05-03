@@ -21,11 +21,16 @@ class PrimitiveValuesSpec extends FlatSpec with Matchers {
   }
 
   "Double" should "allow creating flat Arrays" in {
-    val twoElements = 1.0 | 2.0
+    val twoElements = 1.0 | 2.0 // 1x2 matrix
     twoElements shouldBe a [EncogArray2[_]]
 
-    val fourElements = 1.0 | 2.0 | 3.0 | 4.0
+    val fourElements = 1.0 | 2.0 | 3.0 | 4.0 // 1x4 matrix
     fourElements shouldBe a [EncogArray4[_]]
+
+    val vertical = Tuple1(1.0) \\ 2.0 \\ 3.0 \\ 4.0 // 4x1 matrix
+    vertical shouldBe a [EncogArray4[_]]
+    vertical.elem1 shouldBe a [EncogArray1[_]]
+    vertical.elem1.elem1 shouldBe 1.0
   }
 
   it should "allows creating matrices of well defined sizes" in {

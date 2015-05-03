@@ -2,9 +2,6 @@ package io.scalac.encog
 
 import org.encog.Encog;
 import org.encog.engine.network.activation.ActivationSigmoid;
-import org.encog.ml.data.MLData;
-import org.encog.ml.data.MLDataPair;
-import org.encog.ml.data.MLDataSet;
 import org.encog.ml.data.basic.BasicMLDataSet;
 import org.encog.neural.networks.BasicNetwork;
 import org.encog.neural.networks.layers.BasicLayer;
@@ -52,7 +49,7 @@ object ClassicRunner {
     train.finishTraining();
 
     // test the neural network
-    System.out.println("Neural Network Results:");
+    System.out.println("Neural Network Results for Classic:");
     for { pair <- trainingSet.getData() } {
       val output = network.compute(pair.getInput());
       println(pair.getInput().getData(0) + "," + pair.getInput().getData(1)

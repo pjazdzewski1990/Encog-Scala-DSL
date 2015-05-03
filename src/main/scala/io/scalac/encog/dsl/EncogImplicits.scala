@@ -35,10 +35,11 @@ object EncogImplicits {
     def +(l: EnrichedBasicLayer) = new LayersHolder(layers :+ l)
     def length = layers.length
 
-    def network: ContainsFlat = {
+    def network(): BasicNetwork = {
       val network = new BasicNetwork()
 
       layers.foreach(l => {
+        println(s"Adding ${l.layer}")
         network.addLayer(l.layer)
       })
 
