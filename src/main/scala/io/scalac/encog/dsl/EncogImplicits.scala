@@ -39,7 +39,6 @@ object EncogImplicits {
       val network = new BasicNetwork()
 
       layers.foreach(l => {
-        println(s"Adding ${l.layer}")
         network.addLayer(l.layer)
       })
 
